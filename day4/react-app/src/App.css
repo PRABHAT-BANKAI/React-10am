@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.card {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  height: 45px;
+  align-items: center;
+  font-size: 34px;
+}
