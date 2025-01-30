@@ -8,6 +8,8 @@ function App() {
   const [todolist, setTodolist] = useState(
     JSON.parse(localStorage.getItem("todoData")) || []
   );
+  const [boolean, setBoolean] = useState(false);
+  const [todoIndex, setTodoIndex] = useState("");
 
   function handleSubmit() {
     // todolist.push(inputText);
@@ -16,8 +18,20 @@ function App() {
   }
 
   function handleDelete(id) {
-    let filterData = todolist.filter((element, i) => i != id);// 0!=2 1!=2 2!=2
+    let filterData = todolist.filter((element, i) => i != id); // 0!=2 1!=2 2!=2
     setTodolist(filterData);
+  }
+  function handleEdit(index) {
+    console.log(index, todolist[index]);
+    setInputText(todolist[index]);
+    setTodoIndex(index);
+    setBoolean(true);
+  }
+  function handleUpdate() {
+    let updateData = todolist.map((element,i)=>i==todoIndex?inputText:element)
+    setTodolist(updateData);
+    setInputText("")
+    setBoolean(false);
   }
 
   useEffect(() => {
@@ -35,7 +49,12 @@ function App() {
           setInputText(e.target.value);
         }}
       />
-      <button onClick={handleSubmit}>ADD</button>
+      {boolean ? (
+        <button onClick={handleUpdate}>Update</button>
+      ) : (
+        <button onClick={handleSubmit}>ADD</button>
+      )}
+
       {todolist &&
         todolist.map((element, index) => {
           return (
@@ -47,6 +66,13 @@ function App() {
                 }}
               >
                 Delete
+              </button>
+              <button
+                onClick={() => {
+                  handleEdit(index);
+                }}
+              >
+                Edit
               </button>
             </div>
           );
