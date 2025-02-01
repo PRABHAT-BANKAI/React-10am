@@ -9,7 +9,7 @@ function App() {
     JSON.parse(localStorage.getItem("todoData")) || []
   );
   const [boolean, setBoolean] = useState(false);
-  const [todoIndex, setTodoIndex] = useState("");
+  const [todoIndex, setTodoIndex] = useState("");//3
 
   function handleSubmit() {
     // todolist.push(inputText);
@@ -21,14 +21,17 @@ function App() {
     let filterData = todolist.filter((element, i) => i != id); // 0!=2 1!=2 2!=2
     setTodolist(filterData);
   }
-  function handleEdit(index) {
-    console.log(index, todolist[index]);
-    setInputText(todolist[index]);
-    setTodoIndex(index);
+  function handleEdit(index) {//3
+    console.log(index, todolist[index]);//3 //node
+    setInputText(todolist[index]);//node
+    setTodoIndex(index);//3
     setBoolean(true);
   }
   function handleUpdate() {
-    let updateData = todolist.map((element,i)=>i==todoIndex?inputText:element)
+    let updateData = todolist.map((element,i)=>{
+      return i==todoIndex?inputText:element
+    })
+    console.log(updateData)//[react,html,css,poiytre,mongodb]
     setTodolist(updateData);
     setInputText("")
     setBoolean(false);
@@ -44,7 +47,7 @@ function App() {
       <input
         type="text"
         placeholder="enter your task"
-        value={inputText}
+        value={inputText}//qwerty
         onChange={(e) => {
           setInputText(e.target.value);
         }}
@@ -68,8 +71,8 @@ function App() {
                 Delete
               </button>
               <button
-                onClick={() => {
-                  handleEdit(index);
+                onClick={()=>{
+                  handleEdit(index);//3
                 }}
               >
                 Edit
