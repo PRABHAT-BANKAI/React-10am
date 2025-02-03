@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "adidas",
+      "category": "shoes",
+      "price": 9.99
+    },
+    {
+      "id": "2",
+      "name": "nike",
+      "category": "shirt",
+      "price": 12.99
+    },
+    {
+      "id": "2053",
+      "productName": "shivang",
+      "category": "shirt",
+      "price": "1234"
+    }
+  ]
+}
