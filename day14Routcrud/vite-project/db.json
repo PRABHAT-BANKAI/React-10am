@@ -2,21 +2,39 @@
   "products": [
     {
       "id": "1",
-      "name": "adidas",
+      "productName": "adidas",
       "category": "shoes",
       "price": 9.99
-    },
-    {
-      "id": "2",
-      "name": "nike",
-      "category": "shirt",
-      "price": 12.99
     },
     {
       "id": "2053",
       "productName": "shivang",
       "category": "shirt",
       "price": "1234"
+    },
+    {
+      "id": "cf84",
+      "productName": "yash",
+      "category": "men",
+      "price": "12345"
+    },
+    {
+      "id": "05be",
+      "productName": "janak",
+      "category": "men",
+      "price": "12"
+    },
+    {
+      "id": "4bfc",
+      "productName": "adidas",
+      "category": "shoes",
+      "price": "1111111"
+    },
+    {
+      "id": "5329",
+      "productName": "nike",
+      "category": "lower",
+      "price": "12345"
     }
   ]
 }

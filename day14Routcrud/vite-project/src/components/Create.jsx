@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Create = () => {
+  const navigate = useNavigate()
   const [data, setData] = useState({
     productName: "",
     category: "",
@@ -18,7 +20,8 @@ const Create = () => {
     });
 
     createData();
-  }
+    alert("you product add successfully")
+      }
 
   async function createData() {
     await axios.post("http://localhost:5000/products", data);
@@ -55,8 +58,11 @@ const Create = () => {
         />
         <button>submit</button>
       </form>
+
+     <Link to={"/"}> <button>Back</button></Link>
     </div>
   );
 };
 
 export default Create;
+ 

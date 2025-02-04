@@ -7,7 +7,6 @@ import Create from "./components/Create.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    {/* <App /> */}
-    <Create/>
+    <App />
   </BrowserRouter>
 );
