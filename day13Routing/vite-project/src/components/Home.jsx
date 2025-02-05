@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const Home = ({ userData, setUserData }) => {
+const Home = ({ userData  }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      // setUserData(["item", "item8", "item9", "item10", "item11"]);
+    }, 5000);
+  });
   return (
     <div>
       Home

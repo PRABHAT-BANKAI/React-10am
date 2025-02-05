@@ -8,7 +8,7 @@ function FormPage() {
   const [showData, setShowData] = useState("");
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault();//stop refreshing the page
     if (validation()) {
       let obj = {};
       obj.userName = userName;
@@ -24,6 +24,7 @@ function FormPage() {
 
   function validation() {
     let obj = {};
+  
     let valid = true;
     //valid = false
     if (!userName.trim()) {

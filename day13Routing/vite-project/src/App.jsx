@@ -3,10 +3,25 @@ import "./App.css";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [data,setData]=useState(["item1","item2","item3","item4","item5","item6","item7"])
+  const [data, setData] = useState([
+    "item1",
+    "item2",
+    "item3",
+    "item4",
+    "item5",
+    "item6",
+    "item7",
+  ]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      let newData = [...data, "item", "item8", "item9", "item10", "item11"];
+      setData(newData);
+    }, 5000);
+  },[]);
   return (
     <>
       <nav>
@@ -25,9 +40,12 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<Home  userData={data}  setUserData={setData}/>} />
-        <Route path="/about" element={<About  />} />
-        <Route path="/contact" element={<Contact  />} />
+        <Route
+          path="/"
+          element={<Home userData={data} setUserData={setData} />}
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <footer>
         <p>Copyright &copy; 2023 My Website</p>

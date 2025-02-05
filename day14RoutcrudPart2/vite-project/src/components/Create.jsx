@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Update = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+const Create = () => {
+  const navigate = useNavigate()
   const [data, setData] = useState({
     productName: "",
     category: "",
@@ -13,27 +12,20 @@ const Update = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    console.log("hello")
-    axios
-      .put(`http://localhost:5000/products/${id}`, data)
-      .then((response) => {
-        console.log(response);
-        alert("Product updated successfully");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Error updating product");
-      });
-  }
-
-  useEffect(() => {
-    axios.get(`http://localhost:5000/products/${id}`).then((res) => {
-      console.log(res);
-      setData(res.data);
+    console.log(data);
+    setData({
+      productName: "",
+      category: "",
+      price: "",
     });
-  }, []);
+
+    createData();
+    alert("you product add successfully")
+      }
+
+  async function createData() {
+    await axios.post("http://localhost:5000/products", data);
+  }
 
   return (
     <div>
@@ -67,12 +59,10 @@ const Update = () => {
         <button>submit</button>
       </form>
 
-      <Link to={"/"}>
-        {" "}
-        <button>Back</button>
-      </Link>
+     <Link to={"/"}> <button>Back</button></Link>
     </div>
   );
 };
 
-export default Update;
+export default Create;
+ 
