@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const [productData, setProductData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [filter, setFilter] = useState(productData);
   // const [sortType, setSortType] = useState("");
 
   function handleDelete(id) {
@@ -13,7 +16,7 @@ const Home = () => {
   function handleSort(e) {
     if (e.target.value == "asc") {
       let ascSort = productData.sort((a, b) => a.price - b.price);
-      console.log(ascSort)
+      console.log(ascSort);
       setProductData([...ascSort]);
     } else if (e.target.value == "desc") {
       let descSort = productData.sort((a, b) => b.price - a.price);
@@ -23,15 +26,45 @@ const Home = () => {
   useEffect(() => {
     getDataProduct();
   }, []);
+
+  useEffect(() => {
+    console.log(search);
+    let newSearch = search.toLowerCase();
+
+    let filterData = productData.filter((item) =>
+      item.productName.toLowerCase().includes(newSearch)
+    );
+    setFilter(filterData);
+  }, [search]);
   async function getDataProduct() {
     const getData = await axios.get("http://localhost:5000/products");
     console.log(getData);
     setProductData(getData.data);
   }
-  console.log(productData)
+
+  useEffect(() => {
+    let filterCategory = productData.filter(
+      (item) => item.category == category
+    );
+    setProductData(filterCategory);
+  }, [category]);
+
   return (
     <div>
       <h1>product list </h1>
+      <select name="" id="" onChange={(e) => setCategory(e.target.value)}>
+        <option value="All">All</option>
+        <option value="men">Men</option>
+        <option value="shoes">Shoes</option>
+        <option value="shirt">Shirt</option>
+      </select>
+      <input
+        type="text"
+        placeholder="Search...."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <br />
       <Link to={"/addData"}>
         <button>Create Product</button>
       </Link>
@@ -52,8 +85,8 @@ const Home = () => {
           </tr>
         </thead>
         <tbody>
-          {productData &&
-            productData.map((element) => {
+          {filter &&
+            filter.map((element) => {
               return (
                 <tr key={element.id}>
                   <td>{element.id}</td>
