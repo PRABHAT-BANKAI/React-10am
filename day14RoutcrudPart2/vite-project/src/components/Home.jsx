@@ -6,7 +6,7 @@ const Home = () => {
   const [productData, setProductData] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  const [filter, setFilter] = useState(productData);
+  const [filterData, setFilterData] = useState([]);
   // const [sortType, setSortType] = useState("");
 
   function handleDelete(id) {
@@ -27,32 +27,41 @@ const Home = () => {
     getDataProduct();
   }, []);
 
-  useEffect(() => {
-    console.log(search);
-    let newSearch = search.toLowerCase();
-
-    let filterData = productData.filter((item) =>
-      item.productName.toLowerCase().includes(newSearch)
-    );
-    setFilter(filterData);
-  }, [search]);
   async function getDataProduct() {
     const getData = await axios.get("http://localhost:5000/products");
     console.log(getData);
     setProductData(getData.data);
+    setFilterData(productData);
   }
 
   useEffect(() => {
-    let filterCategory = productData.filter(
-      (item) => item.category == category
-    );
-    setProductData(filterCategory);
-  }, [category]);
+    let filterProducts = productData;
+    let newSearch = search.toLowerCase();
+    if (search) {
+      filterProducts = filterProducts.filter((item) =>
+        item.productName.toLowerCase().includes(newSearch)
+      );
+    }
+    if (category != "All") {
+
+      filterProducts = filterProducts.filter(
+        (item) => item.category === category
+      );
+    }
+    
+
+    setFilterData(filterProducts);
+  }, [search,category]);
 
   return (
     <div>
       <h1>product list </h1>
-      <select name="" id="" onChange={(e) => setCategory(e.target.value)}>
+      <select
+        name=""
+        id=""
+        onChange={(e) => setCategory(e.target.value)}
+        value={category}
+      >
         <option value="All">All</option>
         <option value="men">Men</option>
         <option value="shoes">Shoes</option>
@@ -85,8 +94,8 @@ const Home = () => {
           </tr>
         </thead>
         <tbody>
-          {filter &&
-            filter.map((element) => {
+          {filterData &&
+            filterData.map((element) => {
               return (
                 <tr key={element.id}>
                   <td>{element.id}</td>
