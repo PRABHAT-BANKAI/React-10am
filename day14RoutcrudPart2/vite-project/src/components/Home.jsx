@@ -58,6 +58,7 @@ const Home = () => {
       <h1>product list </h1>
       <select
         name=""
+        
         id=""
         onChange={(e) => setCategory(e.target.value)}
         value={category}

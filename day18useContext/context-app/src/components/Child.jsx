@@ -10,10 +10,6 @@ const Child = () => {
       <p>Name:{name.name}</p>
       <p>Age:{name.age}</p>
       <p>City:{name.city}</p>
-      
-
-
-
     </div>
   )
 }

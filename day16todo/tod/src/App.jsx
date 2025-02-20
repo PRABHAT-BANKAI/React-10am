@@ -3,7 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { AddTodo, updateTodo } from "./redux/features/todolistSlice";
+import { AddTodo, deleteTodo, updateTodo } from "./redux/features/todolistSlice";
 
 function App() {
   const [inputText, setText] = useState("");
@@ -26,6 +26,9 @@ function App() {
   function handleAdd() {
     dispatch(AddTodo(inputText));
     setText("");
+  }
+  function handleDelete(index){
+dispatch(deleteTodo(index))
   }
   return (
     <>
@@ -57,7 +60,7 @@ function App() {
                 >
                   edit
                 </button>
-                <button>delete</button>
+                <button onClick={()=>{handleDelete(index)}}>delete</button>
               </div>
             );
           })}
