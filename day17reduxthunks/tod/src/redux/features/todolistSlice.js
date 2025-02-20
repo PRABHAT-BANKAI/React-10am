@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
   const response = await axios.get("https://fakestoreapi.com/products");
-  return response;
+  return response.data;
 });
 
 export const todolistSlice = createSlice({
@@ -34,7 +34,7 @@ export const todolistSlice = createSlice({
         state.status = true;
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
-        state.product = action.payload.data;
+        state.product = action.payload;
         console.log(state.product);
         state.status = false;
       }).addCase(fetchTodos.rejected, (state, action) => {
