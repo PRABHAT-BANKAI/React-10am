@@ -8,7 +8,8 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         // Signed in user credential
