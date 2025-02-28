@@ -20,6 +20,7 @@ const SignUp = () => {
       .catch((error) => {
         // Handle Errors here
         // alert("signup fail");
+        alert(error)
         console.error("Error creating user:", error);
       });
   }
